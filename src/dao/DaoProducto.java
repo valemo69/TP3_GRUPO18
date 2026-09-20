@@ -104,8 +104,5 @@ public class DaoProducto {
 
 		return LProductos;
 	}
-
-	
-	
 }	
 

@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
-import entidad.Producto;
+
 
 public class DaoProducto {
 
@@ -20,7 +20,7 @@ public class DaoProducto {
 
 	public DaoProducto() {
 		
-		
+	
 		
 	}
 

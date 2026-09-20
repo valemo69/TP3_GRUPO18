@@ -39,7 +39,7 @@ public class DaoCategoria {
 			
 			
 		}catch(Exception e) {
-			e.printStackTrace();
+			e.printStackTrace();//muestra el error por consola
 		}
 	
 	
@@ -55,8 +55,8 @@ public int modificarCategoria(Categoria categoria) {
 	
 	try {
 		cn=DriverManager.getConnection(host+dbName,user,pass); 
-	    Statement st=cn.createStatement();
-		verificador=st.executeUpdate(query); 
+	    Statement st=cn.createStatement();//consulta
+		verificador=st.executeUpdate(query); //ejecucion
 	
 	}catch(Exception e) {
 		
@@ -71,7 +71,7 @@ public int modificarCategoria(Categoria categoria) {
 public int EliminarCategoria(Categoria categoria) {
 	String query = "DELETE FROM categorias WHERE Id = " + categoria.getIdCategoria();
 	Connection cn=null; 
-	int verificador=0; 
+	int verificador=0; //ver cntidad de filas afectadas
 	
 	try {
 		cn=DriverManager.getConnection(host+dbName,user,pass); 

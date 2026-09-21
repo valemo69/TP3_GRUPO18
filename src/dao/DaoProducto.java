@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.ResultSet;
 
-import entidad.Producto;
+
 
 public class DaoProducto {
 
@@ -74,6 +74,33 @@ public class DaoProducto {
 
 		return x;
 	}
+	
+	
+	public int EliminarProducto(Producto producto) {
+		String query= "DELETE FROM Productos WHERE Codigo = '"+producto.getCodigo()+"'";
+		Connection cn=null; 
+	    int verificador=0;
+		try {
+		cn=DriverManager.getConnection(host+dbName,user,pass);
+		Statement st=cn.createStatement(); 
+		verificador=st.executeUpdate(query);
+		
+	}catch(Exception e){
+		e.printStackTrace();
+		
+	}
+	
+	return verificador;
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	public ArrayList<Producto> ObtenerProductos() {
 

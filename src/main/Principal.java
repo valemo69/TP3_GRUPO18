@@ -163,8 +163,19 @@ public class Principal {
         System.out.println("\n--- LISTADO DE CATEGORÍAS ---");
         categoriasBD = daoCat.ObtenerCategorias();
         for(Categoria c : categoriasBD){
-            System.out.println("ID: " + c.getIdCategoria() + " - Nombre: " + c.getNombre());
+            System.out.println("ID: " + c.getIdCategoria() + " - Nombre: " + c.getNombre()); 
         }
+       
+        // 6. Prueba eliminacion de producto 
+        System.out.println("\\n--- ELIMINANDO PRODUCTO---"); 
+        if(productosBD.size()>0){
+        	Producto ProducEliminar= productosBD.get(2);
+        	daoProd.EliminarProducto(ProducEliminar); 
+        	System.out.println("Producto P003 eliminado");
+        }
+        
+        
+        
         
     }
 }

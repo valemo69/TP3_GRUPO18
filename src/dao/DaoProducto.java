@@ -131,5 +131,27 @@ public class DaoProducto {
 
 		return LProductos;
 	}
+	
+	
+	public int modificarProducto(Producto producto) {
+		String query = "UPDATE Productos SET Nombre = '" + producto.getNombre() + "', "
+		             + "Precio = " + producto.getPrecio() + ", "
+		             + "Stock = " + producto.getStock() + ", "
+		             + "IdCategoria = " + producto.getIdCategoria() 
+		             + " WHERE Codigo = '" + producto.getCodigo() + "'";
+		
+		Connection cn = null; 
+		int verificador = 0; 
+		
+		try {
+			cn = DriverManager.getConnection(host + dbName, user, pass); 
+			Statement st = cn.createStatement();
+			verificador = st.executeUpdate(query); 
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return verificador;
+	}
 }	
 

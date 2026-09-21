@@ -166,7 +166,7 @@ public class Principal {
             System.out.println("ID: " + c.getIdCategoria() + " - Nombre: " + c.getNombre()); 
         }
        
-        // 6. Prueba eliminacion de producto 
+        // 7. Prueba eliminacion de producto 
         System.out.println("\\n--- ELIMINANDO PRODUCTO---"); 
         if(productosBD.size()>0){
         	Producto ProducEliminar= productosBD.get(2);
@@ -175,7 +175,34 @@ public class Principal {
         }
         
         
+        // 7. Prueba modificación de producto
+        System.out.println("\n--- MODIFICANDO PRODUCTO ---");     
+        if (productosBD.size() > 0) {
+            Producto prodAModificar = productosBD.get(0);
+            
+            System.out.println("Producto original: " + prodAModificar.getNombre() + " - $" + prodAModificar.getPrecio());
+            
+            // Modificamos sus atributos usando POO
+            prodAModificar.setNombre("Teclado Mecánico RGB (MODIFICADO)");
+            prodAModificar.setPrecio(49999.99);
+            prodAModificar.setStock(10);
+            
+            int resultadoModificacion = daoProd.modificarProducto(prodAModificar);
+            
+            if (resultadoModificacion > 0) {
+                System.out.println("Producto " + prodAModificar.getCodigo() + " modificado exitosamente.");
+            } else {
+                System.out.println("No se pudo modificar el producto " + prodAModificar.getCodigo());
+            }
+        }
+
+        // 8. Listado final para validar el ABML completo de Productos
+        System.out.println("\n--- LISTADO DE PRODUCTOS FINAL ---");
+        ArrayList<Producto> productosFinales = daoProd.ObtenerProductos();
         
+        for (Producto p : productosFinales) {
+            System.out.println("Cód: " + p.getCodigo() + " - " + p.getNombre() + " | Precio: $" + p.getPrecio() + " | Stock: " + p.getStock() + " | IdCat: " + p.getIdCategoria());
+        }
         
     }
 }

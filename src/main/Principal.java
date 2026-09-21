@@ -132,5 +132,39 @@ public class Principal {
         for (Producto p : productosBD) {
             System.out.println("Cód: " + p.getCodigo() + " - " + p.getNombre() + " | Precio: $" + p.getPrecio() + " | Stock: " + p.getStock() + " | IdCat: " + p.getIdCategoria());
         }
+        
+        // 4. Prueba listado de categorias
+        System.out.println("\n--- LISTADO DE CATEGORÍAS ---");
+        
+        Categoria cat3 = new Categoria();
+        cat3.setNombre("Categoria de prueba");
+        int altaCat3 = daoCat.agregarCategoria(cat3);
+        if (altaCat3 > 0) System.out.println("Categoría 'Periféricos' agregada.");
+        
+        ArrayList<Categoria> categoriasBD = daoCat.ObtenerCategorias();
+        for(Categoria c : categoriasBD){
+            System.out.println("ID: " + c.getIdCategoria() + " - Nombre: " + c.getNombre());
+        }
+
+        // 5. Prueba modificacion y eliminacion de categoria
+        System.out.println("\n--- MODIFICANDO Y ELIMINANDO CATEGORÍA ---");
+        if(categoriasBD.size() > 0) {
+            Categoria catAModificar = categoriasBD.get(0);
+            catAModificar.setNombre("Perifericos Actualizados");
+            daoCat.modificarCategoria(catAModificar);
+            System.out.println("Categoria ID 1 modificada.");
+            
+            Categoria catAEliminar = categoriasBD.get(2);
+            daoCat.EliminarCategoria(catAEliminar);
+            System.out.println("Categoria ID 3 eliminada");
+        }
+        
+        // 6. Prueba listado de categorias actualizado
+        System.out.println("\n--- LISTADO DE CATEGORÍAS ---");
+        categoriasBD = daoCat.ObtenerCategorias();
+        for(Categoria c : categoriasBD){
+            System.out.println("ID: " + c.getIdCategoria() + " - Nombre: " + c.getNombre());
+        }
+        
     }
 }

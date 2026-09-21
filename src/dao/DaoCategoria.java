@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 
@@ -48,49 +49,64 @@ public class DaoCategoria {
 
 
 
-public int modificarCategoria(Categoria categoria) {
-	String query = "UPDATE categorias SET Nombre = '"+categoria.getNombre()+"' WHERE Id ='"+categoria.getNombre() + "')";
-	Connection cn=null; 
-	int verificador=0; 
-	
-	try {
-		cn=DriverManager.getConnection(host+dbName,user,pass); 
-	    Statement st=cn.createStatement();//consulta
-		verificador=st.executeUpdate(query); //ejecucion
-	
-	}catch(Exception e) {
+	public int modificarCategoria(Categoria categoria) {
+		String query = "UPDATE categorias SET Nombre = '" + categoria.getNombre() + "' WHERE IdCategoria = " + categoria.getIdCategoria();
+		Connection cn=null; 
+		int verificador=0; 
 		
-		e.printStackTrace();
+		try {
+			cn=DriverManager.getConnection(host+dbName,user,pass); 
+		    Statement st=cn.createStatement();//consulta
+			verificador=st.executeUpdate(query); //ejecucion
+		
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return verificador;	
+	}
+
+
+	public int EliminarCategoria(Categoria categoria) {
+		String query = "DELETE FROM categorias WHERE IdCategoria = " + categoria.getIdCategoria();
+		Connection cn=null; 
+		int verificador=0; //ver cantidad de filas afectadas
+		
+		try {
+			cn=DriverManager.getConnection(host+dbName,user,pass); 
+		    Statement st=cn.createStatement();
+			verificador=st.executeUpdate(query); 
+		
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+		}
+		
+		return verificador;
 	}
 	
-	return verificador;
-	
-}
+	public ArrayList<Categoria> ObtenerCategorias() {
+	    ArrayList<Categoria> lista = new ArrayList<Categoria>();
+	    Connection cn = null;
 
+	    try {
+	        cn = DriverManager.getConnection(host + dbName, user, pass);
+	        Statement st = cn.createStatement();
+	        String query = "SELECT * FROM Categorias";
+	        ResultSet set = st.executeQuery(query);
 
-public int EliminarCategoria(Categoria categoria) {
-	String query = "DELETE FROM categorias WHERE Id = " + categoria.getIdCategoria();
-	Connection cn=null; 
-	int verificador=0; //ver cntidad de filas afectadas
-	
-	try {
-		cn=DriverManager.getConnection(host+dbName,user,pass); 
-	    Statement st=cn.createStatement();
-		verificador=st.executeUpdate(query); 
-	
-	}catch(Exception e) {
-		
-		e.printStackTrace();
+	        while (set.next()) {
+	            Categoria c = new Categoria();
+	            c.setIdCategoria(set.getInt("IdCategoria"));
+	            c.setNombre(set.getString("Nombre"));
+	            lista.add(c);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return lista;
 	}
-	
-	return verificador;
-}
-	
-
-
-
-
-	
 }
 
 

@@ -33,9 +33,9 @@ public class DaoCategoria {
 		int verificador=0;
 		
 		try {
-			cn=DriverManager.getConnection(host+dbName,user,pass); 
-		    Statement st=cn.createStatement();
-			verificador=st.executeUpdate(query);
+			cn=DriverManager.getConnection(host+dbName,user,pass); //vinculo a la bd
+		    Statement st=cn.createStatement();//carga de consulta
+			verificador=st.executeUpdate(query);//ejecuta la consulta
 			
 			
 		}catch(Exception e) {
@@ -43,7 +43,7 @@ public class DaoCategoria {
 		}
 	
 	
-	return verificador;
+	return verificador;//cantidad de filas afectadas
 	}
 
 

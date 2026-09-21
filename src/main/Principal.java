@@ -26,8 +26,8 @@ public class Principal {
         int altaCat1 = daoCat.agregarCategoria(cat1);
         int altaCat2 = daoCat.agregarCategoria(cat2);
 
-        if (altaCat1 > 0) System.out.println("Categoría 'Periféricos' agregada.");
-        if (altaCat2 > 0) System.out.println("Categoría 'Mobiliario' agregada.");
+        if (altaCat1 > 0) System.out.println("Categoría 'Periféricos' agregada."); else System.out.println("Categoría 		'Periféricos' no pudo ser agregada.");		
+        if (altaCat2 > 0) System.out.println("Categoría 'Mobiliario' agregada.");  else System.out.println("Categoría 		'Mobiliario' no pudo ser agregada.");		
 
         // 2. Alta de 10 productos usando sp_AgregarProducto
         System.out.println("\n--- REGISTRANDO PRODUCTOS ---");
